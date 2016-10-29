@@ -39,7 +39,7 @@ class Player{
    }
    image(photo, positionX, positionY,60,80);
   }
-}
+
 
 void move(){
     if (characterColor=="blue") {
