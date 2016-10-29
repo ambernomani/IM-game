@@ -3,6 +3,7 @@ int P2posX = width/2;
 int P2posY = height;
 String P1playerC = "purple";
 String P2playerC = "blue";
+int setTextColor=0;//determines if the key has been pressed
 
 void setup(){
   size(600, 600);
@@ -13,8 +14,7 @@ void setup(){
 
 void draw(){
 if (keyPressed == true){
-
-  
+  setTextColor=1;
   p2=new Player("purple",500,500);
   p1=new Player("blue", 30,30);
   p1.display();
@@ -26,10 +26,15 @@ if (keyPressed == true){
   p2.move();
   p2.keyPressed();
   p2.keyReleased();
+  }
+  if(setTextColor==0){
+       fill(255);
+       textSize(32);
+       textAlign(CENTER);
+       text("Press any key to start", width/2, height/2);
   }else{
-    textSize(32);
-    textAlign(CENTER);
-    text("Press any key to start", width/2, height/2);
+      fill(0);
+      text("Press any key to start", width/2, height/2);
   }
 }
   
