@@ -33,3 +33,57 @@ class Player{
    image(photo, positionX, positionY,60,80);
   }
 }
+
+void move(){
+    if (characterColor=="blue") {
+     fill(0,0,255);
+    } else if (characterColor=="purple") {
+     fill(138, 43, 226);
+     }
+    ellipse(positionX, positionY, 20, 20);  
+  }
+  
+  void keyPressed(){
+    if (key == CODED) {
+      if (keyCode == UP){
+        positionY += 50;
+      } else if (keyCode == DOWN){
+        positionY -= 50;
+      } else if (keyCode == RIGHT){
+        positionX += 50;
+      } else if (keyCode == LEFT){
+        positionX -= 50;
+      } else if (keyCode == 87){
+        positionY -= 50;
+      } else if (keyCode == 83){
+        positionY += 50;
+      } else if (keyCode == 68){
+        positionX -= 50;
+      } else if (keyCode == 65){
+        positionX += 50;
+      }
+    }
+  }
+  
+  void keyReleased(){
+    if (key == CODED) {
+      if (keyCode == UP){
+        positionY += 0;
+      } else if (keyCode == DOWN){
+        positionY -= 0;
+      } else if (keyCode == RIGHT){
+        positionX += 0;
+      } else if (keyCode == LEFT){
+        positionX -= 0;
+      } else if (keyCode == 87){
+        positionY -= 0;
+      } else if (keyCode == 83){
+        positionY += 0;
+      } else if (keyCode == 68){
+        positionX -= 0;
+      } else if (keyCode == 65){
+        positionX += 0;
+      }
+    }
+  }
+}
