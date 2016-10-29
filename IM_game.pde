@@ -1,9 +1,9 @@
-class Person{
+class Player{
   String characterColor;
   int positionX;
   int positionY;
   
-  Person(String tempColor,int tempX, int tempY){
+  Player(String tempColor,int tempX, int tempY){
     characterColor=tempColor;
     positionX=tempX;
     positionY=tempY;
