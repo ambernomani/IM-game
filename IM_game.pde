@@ -1,23 +1,35 @@
+Player p1;
+Player p2;
+PImage photo;
+
+void setup(){
+  size(600,600);
+  background(0);
+}
+void draw(){
+  p2=new Player("purple",500,500);
+  p1=new Player("blue", 30,30);
+  p1.display();
+  p2.display();
+}
+  
 class Player{
-  String characterColor;
+  String playerColor;
   int positionX;
   int positionY;
   
   Player(String tempColor,int tempX, int tempY){
-    characterColor=tempColor;
+    playerColor=tempColor;
     positionX=tempX;
     positionY=tempY;
   }
   void display(){
-   if(characterColor=="red"){
-     fill(255,0,0);
+   if(playerColor == "blue"){
+     photo=loadImage("blueGirl.png");
    }
-   if(characterColor=="black"){
-     fill(0,0,0);
+   if(playerColor=="purple"){
+     photo=loadImage("purpleGirl.png");
    }
-   else{
-     fill(200,200,200);
-   }
-   
+   image(photo, positionX, positionY,60,80);
   }
 }
