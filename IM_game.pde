@@ -1,7 +1,8 @@
-int P1posY = 30;
-int P1posX = 30;
-int P2posX = 550;//width/2;
-int P2posY = 550; //height;
+
+int P1posY = 0;
+int P1posX = 300;
+int P2posX = 300;
+int P2posY = 600;
 String P1playerC = "purple";
 String P2playerC = "blue";
 
@@ -22,6 +23,7 @@ void setup(){
 }
 
 void draw(){
+  noStroke();
   if(setTextColor == 0){
        fill(255);
        textSize(32);
@@ -32,19 +34,43 @@ void draw(){
       text("Press any key to start", width/2, height/2);
   }
   
-if (keyPressed == true){
-  setTextColor = 1;
-  p1.display();
-  p2.display();
-  m1.display();
-  m2.display();
-  p1.keyPressed();
- // p1.keyReleased();    
-  p2.keyPressed();
- // p2.keyReleased();
-  
+  if (keyPressed == true){
+    setTextColor = 1;
+    //p1.display();
+    //p2.display();
+    m1.display();
+    m2.display();
+    p1.keyPressed();
+     // p1.keyReleased();    
+    p2.keyPressed();
+     // p2.keyReleased();
+    delay(75);
+    color pTrue = color(138, 43, 226);
+    println("true: ", pTrue);
+    color bTrue = color(0, 0, 255);
+    println("trueB: ", bTrue);
+    color p = get(P1posX, P1posY);
+    println("color: ", p);
+    color b = get(P2posX, P2posY);
+    if (p != bTrue || b != pTrue){
+      //p1.display();
+      //p2.display();
+      m1.display();
+      m2.display();
+      //p1.keyPressed();
+     //// p1.keyReleased();    
+      //p2.keyPressed();
+     //// p2.keyReleased();
+      //delay(100);
+    }
+    else if (p == bTrue){
+      text("GAME OVER. Blue wins", width/2, height/2);
+    }
+    else if (b == pTrue){
+      text("GAME OVER. Purple wins", width/2, height/2);
+    }
   }
-  
+    
 }
   
 class Player{ //makes the players in their position and color
@@ -59,15 +85,17 @@ class Player{ //makes the players in their position and color
   }
   void display(){
    if(playerColor == "blue"){
-     photo=loadImage("blueGirl.png");
+     photo = loadImage("blueGirl.png");
+     image(photo, P2posX, P2posY,30,40);
    }
    if(playerColor=="purple"){
-     photo=loadImage("purpleGirl.png");
+     photo = loadImage("purpleGirl.png");
+     image(photo, P1posX, P1posY,30,40);
    }
-   image(photo, positionX, positionY,30,40);
+   
   }
   void keyPressed(){
-    if(keyPressed==true){
+    //if(keyPressed==true){
     //if (key == CODED) {
       if (keyCode == UP){
         P2posY -= 10;
@@ -94,7 +122,7 @@ class Player{ //makes the players in their position and color
   }
   
   void keyReleased(){
-    if(keyPressed==true){
+    //if(keyPressed==true){
     //if (key == CODED) {
       if (keyCode == UP){
         P2posY -= 0;
@@ -114,8 +142,8 @@ class Player{ //makes the players in their position and color
         P1posX += 0;
       }
     }
-  }
-}
+
+
 
 class Move{
   String playerColor;
@@ -195,4 +223,3 @@ class Move{
       }
     }
   }*/
-
