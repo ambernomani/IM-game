@@ -11,6 +11,13 @@ void draw(){
   p1=new Player("blue", 30,30);
   p1.display();
   p2.display();
+  p1.move();
+  p1.keyPressed();
+  p1.keyReleased();
+      
+  p2.move();
+  p2.keyPressed();
+  p2.keyReleased();
 }
   
 class Player{
