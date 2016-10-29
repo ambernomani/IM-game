@@ -7,6 +7,9 @@ void setup(){
   background(0);
 }
 void draw(){
+if (keyPressed == true){
+
+  
   p2=new Player("purple",500,500);
   p1=new Player("blue", 30,30);
   p1.display();
@@ -18,6 +21,11 @@ void draw(){
   p2.move();
   p2.keyPressed();
   p2.keyReleased();
+  }else{
+    textSize(32);
+    textAlign(CENTER);
+    text("Press any key to start", width/2, height/2);
+  }
 }
   
 class Player{
@@ -42,9 +50,9 @@ class Player{
 
 
 void move(){
-    if (characterColor=="blue") {
+    if (playerColor=="blue") {
      fill(0,0,255);
-    } else if (characterColor=="purple") {
+    } else if (playerColor=="purple") {
      fill(138, 43, 226);
      }
     ellipse(positionX, positionY, 20, 20);  
