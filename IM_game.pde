@@ -1,11 +1,16 @@
-Player p1;
-Player p2;
-PImage photo;
+int P1posY = 0;
+int P2posX = width/2;
+int P2posY = height;
+String P1playerC = "purple";
+String P2playerC = "blue";
 
 void setup(){
-  size(600,600);
+  size(600, 600);
   background(0);
+  P1 = new Player(P1playerC, P1posX, P1posY);
+  P2 = new Player(P2playerC, P2posX, P2posY);
 }
+
 void draw(){
 if (keyPressed == true){
 
@@ -48,34 +53,40 @@ class Player{
    image(photo, positionX, positionY,60,80);
   }
 
+}
 
-void move(){
-    if (playerColor=="blue") {
+class Move(){
+     
+  
+  void display(){
+  
+    if (P1playerC == "blue") {
      fill(0,0,255);
-    } else if (playerColor=="purple") {
+    } else if (P1playerC == "purple") {
      fill(138, 43, 226);
      }
-    ellipse(positionX, positionY, 20, 20);  
+    ellipse(P1posX, P1posY, 20, 20); 
+    ellipse(P2posX, P2posY, 20, 20);
   }
   
   void keyPressed(){
     if (key == CODED) {
       if (keyCode == UP){
-        positionY += 50;
+        P2posY += 50;
       } else if (keyCode == DOWN){
-        positionY -= 50;
+        P2posY -= 50;
       } else if (keyCode == RIGHT){
-        positionX += 50;
+        P2posX += 50;
       } else if (keyCode == LEFT){
-        positionX -= 50;
+        P2posX -= 50;
       } else if (keyCode == 87){
-        positionY -= 50;
+        P1posY -= 50;
       } else if (keyCode == 83){
-        positionY += 50;
+        P1posY += 50;
       } else if (keyCode == 68){
-        positionX -= 50;
+        P1posX -= 50;
       } else if (keyCode == 65){
-        positionX += 50;
+        P1posX += 50;
       }
     }
   }
@@ -83,22 +94,23 @@ void move(){
   void keyReleased(){
     if (key == CODED) {
       if (keyCode == UP){
-        positionY += 0;
+        P2posY += 50;
       } else if (keyCode == DOWN){
-        positionY -= 0;
+        P2posY -= 50;
       } else if (keyCode == RIGHT){
-        positionX += 0;
+        P2posX += 50;
       } else if (keyCode == LEFT){
-        positionX -= 0;
+        P2posX -= 50;
       } else if (keyCode == 87){
-        positionY -= 0;
+        P1posY -= 50;
       } else if (keyCode == 83){
-        positionY += 0;
+        P1posY += 50;
       } else if (keyCode == 68){
-        positionX -= 0;
+        P1posX -= 50;
       } else if (keyCode == 65){
-        positionX += 0;
+        P1posX += 50;
       }
     }
   }
 }
+ 
