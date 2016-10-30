@@ -36,10 +36,6 @@ void draw(){
   
   if (keyPressed == true){
     setTextColor = 1;
-    //p1.display();
-    //p2.display();
-    //m1.display();
-    //m2.display();
     p1.keyPressed();
     m1.keyPressed();    
     p2.keyPressed();
