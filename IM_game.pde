@@ -59,9 +59,8 @@ void draw(){
       text("Press any key to start", width/2, height/2);
   }
   
-if (keyPressed == true){
-  setTextColor = 1;
-  setTextColor = 1;
+  if (keyPressed == true){
+    setTextColor = 1;
     p1.keyPressed();
     m1.keyPressed();    
     p2.keyPressed();
