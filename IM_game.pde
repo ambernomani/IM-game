@@ -61,19 +61,40 @@ void draw(){
   
 if (keyPressed == true){
   setTextColor = 1;
-  p1.display();
-  p2.display();
-  m1.display();
-  m2.display();
-  m1.keyPressed();
-  m2.keyPressed();
-  //p1.keyPressed();
- // p1.keyReleased();    
- // p2.keyPressed();
- // p2.keyReleased();
-  
-  }
-  
+  setTextColor = 1;
+    p1.keyPressed();
+    m1.keyPressed();    
+    p2.keyPressed();
+    m2.keyPressed();
+    delay(75);
+    color pTrue = color(138, 43, 226);
+    //println("trueP: ", pTrue);
+    //println("TPRed:"+red(pTrue)+" Green:"+green(pTrue)+" Blue:"+blue(pTrue)); 
+    color bTrue = color(0, 0, 255);
+    //println("trueB: ", bTrue);
+    //println("TPRed:"+red(bTrue)+" Green:"+green(bTrue)+" Blue:"+blue(bTrue)); 
+    color p = get(P1posX, P1posY);
+    //println("colorP: ", p);
+    //println("PRed:"+red(p)+" Green:"+green(p)+" Blue:"+blue(p)); 
+    color b = get(P2posX, P2posY);
+    //println("colorB: ", b);
+    //println("BRed:"+red(b)+" Green:"+green(b)+" Blue:"+blue(b)); 
+    
+    if (p == bTrue){
+      m1.display();
+      text("GAME OVER. Blue wins", width/2, height/2);
+      println("gameoverB");
+    } else if (b == pTrue){
+      m2.display();
+      text("GAME OVER. Purple wins", width/2, height/2);
+      println("gameoverP");
+    } else {
+      
+      m1.display();
+      m2.display();
+     
+    } 
+  }   
 }
   
 class Player{ //makes the players in their position and color
