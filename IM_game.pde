@@ -5,6 +5,17 @@ int P2posY = 550; //height;
 String P1playerC = "purple";
 String P2playerC = "blue";
 
+int arrayVal=30;
+
+int arr1=0;//counter for how many stored values for player 1
+int arr2=0;//counter for how many stored values for player 2
+boolean boo1=false;//checks if player 1 or player 2 has moved
+boolean boo2=false;
+int[] p1X;
+int[] p1Y;
+int[] p2X;
+int[] p2Y;
+
 Player p1;
 Player p2;
 Move m1;
@@ -19,6 +30,22 @@ void setup(){
   p2 = new Player(P2playerC, P2posX, P2posY);
   m1= new Move(P1playerC, P1posX, P1posY);
   m2=new Move(P2playerC, P2posX, P2posY);
+  
+  p1X=new int[arrayVal];
+  p1Y=new int[arrayVal];
+  p2X=new int[arrayVal];
+  p2Y=new int[arrayVal];
+  
+  for(int l=0;l<arrayVal;l++){
+    p1X[l]=P1posX;
+    p1Y[l]=P1posY;
+    p2X[l]=P2posX;
+    p2Y[l]=P2posY;
+  }
+  printArray(p1X);
+  printArray(p1Y);
+  printArray(p2X);
+  printArray(p2Y);
 }
 
 void draw(){
@@ -38,9 +65,11 @@ if (keyPressed == true){
   p2.display();
   m1.display();
   m2.display();
-  p1.keyPressed();
+  m1.keyPressed();
+  m2.keyPressed();
+  //p1.keyPressed();
  // p1.keyReleased();    
-  p2.keyPressed();
+ // p2.keyPressed();
  // p2.keyReleased();
   
   }
@@ -59,14 +88,19 @@ class Player{ //makes the players in their position and color
   }
   void display(){
    if(playerColor == "blue"){
+     //fill(0,0,255);
      photo=loadImage("blueGirl.png");
+     //ellipse(positionX,positionY,40,40);
    }
    if(playerColor=="purple"){
+     //fill(138, 43, 226);
+     //ellipse(positionX,positionY,40,40);
      photo=loadImage("purpleGirl.png");
    }
    image(photo, positionX, positionY,30,40);
+   ellipse(positionX,positionY,40,40);
   }
-  void keyPressed(){
+  /*void keyPressed(){
     if(keyPressed==true){
     //if (key == CODED) {
       if (keyCode == UP){
@@ -114,7 +148,7 @@ class Player{ //makes the players in their position and color
         P1posX += 0;
       }
     }
-  }
+  }*/
 }
 
 class Move{
@@ -129,46 +163,105 @@ class Move{
   }
   
   void display(){
+    background(0);
     if (P1playerC == "blue") {
        fill(0,0,255);
-       ellipse(P1posX, P1posY, 20, 20); 
+       for(int i=0;i<arrayVal;i++){
+          ellipse(p1X[i],p1Y[i],20,20);
+       }
+       //arr1++;
+       //ellipse(P1posX, P1posY, 20, 20); 
     } else if (P1playerC == "purple") {
        fill(138, 43, 226);
-       ellipse(P1posX, P1posY, 20, 20); 
+       for(int i=0;i<arrayVal;i++){
+          ellipse(p1X[i],p1Y[i],20,20);
+       }
+       //arr1++;
+       //ellipse(P1posX, P1posY, 20, 20); 
     }
     if (P2playerC == "blue") {
       fill(0,0,255);
-      ellipse(P2posX, P2posY, 20, 20);
+      for(int i=0;i<arrayVal;i++){
+        ellipse(p2X[i],p2Y[i],20,20);
+      }
+      //arr2++;
+      //ellipse(P2posX, P2posY, 20, 20);
     } else if(P2playerC == "purple"){
       fill(138, 43, 226);
-      ellipse(P2posX, P2posY, 20, 20);
+      for(int i=0;i<arrayVal;i++){
+        ellipse(p2X[i],p2Y[i],20,20);
+      }
+      //arr2++;
+      //ellipse(P2posX, P2posY, 20, 20);
     }
   }
   
   void keyPressed(){
       if (keyCode == UP){
-        P2posY -= 10;
+        P2posY -= 20;
+        boo1=false;
+        boo2=true;
+        
         //keyPressed=false;
       } else if (keyCode == DOWN){
-        P2posY += 10;
+        P2posY += 20;
+        boo1=false;
+        boo2=true;
       } else if (keyCode == RIGHT){
-        P2posX += 10;
+        P2posX += 20;
+        boo1=false;
+        boo2=true;
       } else if (keyCode == LEFT){
-        P2posX -= 10;
+        P2posX -= 20;
+        boo1=false;
+        boo2=true;
       } else if (key == 'w'){
-        P1posY -= 10;
+        P1posY -= 20;
+        boo1=true;
+        boo2=false;
         print("W");
       } else if (key == 's'){
-        P1posY += 10;
+        P1posY += 20;
+        boo1=true;
+        boo2=false;
         print("S");
       } else if (key == 'a'){
-        P1posX -= 10;
+        P1posX -= 20;
+        boo1=true;
+        boo2=false;
         print("A");
       } else if (key == 'd'){
-        P1posX += 10;
+        P1posX += 20;
+        boo1=true;
+        boo2=false;
         print("D");
       }
-      //keyPressed=false;
+      print(boo1, boo2);
+      if(arr1<arrayVal && boo1==true){
+      p1X[arr1]=P1posX;
+      p1Y[arr1]=P1posY;
+      }
+      if (arr1>=arrayVal && boo1==true){
+        for(int i=0;i<(arrayVal-1);i++){
+          p1X[i]=p1X[i+1];
+          p1Y[i]=p1Y[i+1];
+        }
+        p1X[arrayVal-1]=P1posX;
+        p1Y[arrayVal-1]=P1posY;
+      }
+      if(arr2<arrayVal && boo2==true){
+        p2X[arr2]=P2posX;
+        p2Y[arr2]=P2posY;
+      }if (arr2>=arrayVal && boo2==true){
+        for(int i=0;i<(arrayVal-1);i++){
+          p2X[i]=p2X[i+1];
+          p2Y[i]=p2Y[i+1];
+        }
+        p2X[arrayVal-1]=P2posX;
+        p2Y[arrayVal-1]=P2posY;
+      }
+      arr1++;
+      arr2++;
     }
   }
   
@@ -195,4 +288,3 @@ class Move{
       }
     }
   }*/
-
