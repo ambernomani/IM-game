@@ -38,39 +38,41 @@ void draw(){
     setTextColor = 1;
     //p1.display();
     //p2.display();
-    m1.display();
-    m2.display();
+    //m1.display();
+    //m2.display();
     p1.keyPressed();
-     // p1.keyReleased();    
+    m1.keyPressed();    
     p2.keyPressed();
-     // p2.keyReleased();
+    m2.keyPressed();
     delay(75);
     color pTrue = color(138, 43, 226);
-    println("true: ", pTrue);
+    //println("trueP: ", pTrue);
+    //println("TPRed:"+red(pTrue)+" Green:"+green(pTrue)+" Blue:"+blue(pTrue)); 
     color bTrue = color(0, 0, 255);
-    println("trueB: ", bTrue);
+    //println("trueB: ", bTrue);
+    //println("TPRed:"+red(bTrue)+" Green:"+green(bTrue)+" Blue:"+blue(bTrue)); 
     color p = get(P1posX, P1posY);
-    println("color: ", p);
+    //println("colorP: ", p);
+    //println("PRed:"+red(p)+" Green:"+green(p)+" Blue:"+blue(p)); 
     color b = get(P2posX, P2posY);
-    if (p != bTrue || b != pTrue){
-      //p1.display();
-      //p2.display();
+    //println("colorB: ", b);
+    //println("BRed:"+red(b)+" Green:"+green(b)+" Blue:"+blue(b)); 
+    
+    if (p == bTrue){
+      m1.display();
+      text("GAME OVER. Blue wins", width/2, height/2);
+      println("gameoverB");
+    } else if (b == pTrue){
+      m2.display();
+      text("GAME OVER. Purple wins", width/2, height/2);
+      println("gameoverP");
+    } else {
+      
       m1.display();
       m2.display();
-      //p1.keyPressed();
-     //// p1.keyReleased();    
-      //p2.keyPressed();
-     //// p2.keyReleased();
-      //delay(100);
-    }
-    else if (p == bTrue){
-      text("GAME OVER. Blue wins", width/2, height/2);
-    }
-    else if (b == pTrue){
-      text("GAME OVER. Purple wins", width/2, height/2);
-    }
-  }
-    
+     
+    } 
+  }   
 }
   
 class Player{ //makes the players in their position and color
@@ -121,27 +123,27 @@ class Player{ //makes the players in their position and color
     }
   }
   
-  void keyReleased(){
-    //if(keyPressed==true){
-    //if (key == CODED) {
-      if (keyCode == UP){
-        P2posY -= 0;
-      } else if (keyCode == DOWN){
-        P2posY += 0;
-      } else if (keyCode == RIGHT){
-        P2posX += 0;
-      } else if (keyCode == LEFT){
-        P2posX -= 0;
-      } else if (key == 'w'){
-        P1posY -= 0;
-      } else if (key == 's'){
-        P1posY += 0;
-      } else if (key == 'a'){
-        P1posX -= 0;
-      } else if (key == 'd'){
-        P1posX += 0;
-      }
-    }
+  //void keyReleased(){
+  //  //if(keyPressed==true){
+  //  //if (key == CODED) {
+  //    if (keyCode == UP){
+  //      P2posY -= 0;
+  //    } else if (keyCode == DOWN){
+  //      P2posY += 0;
+  //    } else if (keyCode == RIGHT){
+  //      P2posX += 0;
+  //    } else if (keyCode == LEFT){
+  //      P2posX -= 0;
+  //    } else if (key == 'w'){
+  //      P1posY -= 0;
+  //    } else if (key == 's'){
+  //      P1posY += 0;
+  //    } else if (key == 'a'){
+  //      P1posX -= 0;
+  //    } else if (key == 'd'){
+  //      P1posX += 0;
+  //    }
+  //  }
 
 
 
@@ -174,9 +176,10 @@ class Move{
   }
   
   void keyPressed(){
+    //if(keyPressed==true){
+    //if (key == CODED) {
       if (keyCode == UP){
         P2posY -= 10;
-        //keyPressed=false;
       } else if (keyCode == DOWN){
         P2posY += 10;
       } else if (keyCode == RIGHT){
@@ -184,19 +187,18 @@ class Move{
       } else if (keyCode == LEFT){
         P2posX -= 10;
       } else if (key == 'w'){
-        P1posY -= 10;
-        print("W");
-      } else if (key == 's'){
         P1posY += 10;
-        print("S");
+        print('w');
+      } else if (key == 's'){
+        P1posY -= 10;
+        print('s');
       } else if (key == 'a'){
-        P1posX -= 10;
-        print("A");
-      } else if (key == 'd'){
         P1posX += 10;
-        print("D");
+        print('a');
+      } else if (key == 'd'){
+        P1posX -= 10;
+        print('d');
       }
-      //keyPressed=false;
     }
   }
   
