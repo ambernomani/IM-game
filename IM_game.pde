@@ -81,12 +81,41 @@ void draw(){
     
     if (p == bTrue){
       m1.display();
+      fill(0);
+      rect(0,0, width, height);
+      fill(255);
       text("GAME OVER. Blue wins", width/2, height/2);
       println("gameoverB");
+      P1posY = 30;
+      P1posX = 30;
+      P2posX = 550;//width/2;
+      P2posY = 550; //height;
+      for(int l=0;l<arrayVal;l++){
+        p1X[l]=P1posX;
+        p1Y[l]=P1posY;
+        p2X[l]=P2posX;
+        p2Y[l]=P2posY;
+      }
+      //delay(2000);  
+
     } else if (b == pTrue){
       m2.display();
+      fill(0);
+      rect(0,0, width, height);
+      fill(255);
       text("GAME OVER. Purple wins", width/2, height/2);
       println("gameoverP");
+      P1posY = 30;
+      P1posX = 30;
+      P2posX = 550;//width/2;
+      P2posY = 550; //height;
+      for(int l=0;l<arrayVal;l++){
+        p1X[l]=P1posX;
+        p1Y[l]=P1posY;
+        p2X[l]=P2posX;
+        p2Y[l]=P2posY;
+      }
+      //delay(2000);
     } else {
       
       m1.display();
