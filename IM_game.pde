@@ -16,7 +16,8 @@ int[] p1Y;
 int[] p2X;
 int[] p2Y;
 
-
+Player p1;
+Player p2;
 Move m1;
 Move m2;
 PImage photo;
@@ -25,6 +26,8 @@ int setTextColor = 0;//determines if the key has been pressed
 void setup(){
   size(600, 600);
   background(0);
+  p1 = new Player(P1playerC, P1posX, P1posY);
+  p2 = new Player(P2playerC, P2posX, P2posY);
   m1= new Move(P1playerC, P1posX, P1posY);
   m2=new Move(P2playerC, P2posX, P2posY);
   
@@ -118,6 +121,82 @@ void draw(){
     } 
   }   
 }
+
+class Player{ //makes the players in their position and color
+  String playerColor;
+  int positionX;
+  int positionY;
+  
+  Player(String tempColor,int tempX, int tempY){
+    playerColor=tempColor;
+    positionX=tempX;
+    positionY=tempY;
+  }
+  void display(){
+   if(playerColor == "blue"){
+     //fill(0,0,255);
+     photo=loadImage("blueGirl.png");
+     //ellipse(positionX,positionY,40,40);
+   }
+   if(playerColor=="purple"){
+     //fill(138, 43, 226);
+     //ellipse(positionX,positionY,40,40);
+     photo=loadImage("purpleGirl.png");
+   }
+   image(photo, positionX, positionY,30,40);
+   ellipse(positionX,positionY,40,40);
+  }
+  void keyPressed(){
+    if(keyPressed==true){
+    //if (key == CODED) {
+      if (keyCode == UP){
+        P2posY -= 10;
+      } else if (keyCode == DOWN){
+        P2posY += 10;
+      } else if (keyCode == RIGHT){
+        P2posX += 10;
+      } else if (keyCode == LEFT){
+        P2posX -= 10;
+      } else if (key == 'w'){
+        P1posY += 10;
+        print('w');
+      } else if (key == 's'){
+        P1posY -= 10;
+        print('s');
+      } else if (key == 'a'){
+        P1posX += 10;
+        print('a');
+      } else if (key == 'd'){
+        P1posX -= 10;
+        print('d');
+      }
+    }
+  }
+  
+  void keyReleased(){
+    if(keyPressed==true){
+    //if (key == CODED) {
+      if (keyCode == UP){
+        P2posY -= 0;
+      } else if (keyCode == DOWN){
+        P2posY += 0;
+      } else if (keyCode == RIGHT){
+        P2posX += 0;
+      } else if (keyCode == LEFT){
+        P2posX -= 0;
+      } else if (key == 'w'){
+        P1posY -= 0;
+      } else if (key == 's'){
+        P1posY += 0;
+      } else if (key == 'a'){
+        P1posX -= 0;
+      } else if (key == 'd'){
+        P1posX += 0;
+      }
+    }
+  }
+}
+
 
 class Move{
   String playerColor;
