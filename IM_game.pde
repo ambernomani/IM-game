@@ -56,14 +56,14 @@ void draw(){
        text("Press any key to start", width/2, height/2);
   }else{
       fill(0);
-      text("Press any key to start", width/2, height/2);
+      //text("Press any key to start", width/2, height/2);
   }
   
   if (keyPressed == true){
     setTextColor = 1;
-    p1.keyPressed();
+    //p1.keyPressed();
     m1.keyPressed();    
-    p2.keyPressed();
+    //p2.keyPressed();
     m2.keyPressed();
     delay(75);
     color pTrue = color(138, 43, 226);
@@ -189,67 +189,90 @@ class Move{
        for(int i=0;i<arrayVal;i++){
           ellipse(p1X[i],p1Y[i],20,20);
        }
-       //arr1++;
-       //ellipse(P1posX, P1posY, 20, 20); 
+       //ellipse(p1X[19],p1Y[19],40,40);
+       
     } else if (P1playerC == "purple") {
        fill(138, 43, 226);
        for(int i=0;i<arrayVal;i++){
           ellipse(p1X[i],p1Y[i],20,20);
        }
-       //arr1++;
-       //ellipse(P1posX, P1posY, 20, 20); 
+       //ellipse(p1X[19],p1Y[19],40,40);
+       
     }
     if (P2playerC == "blue") {
       fill(0,0,255);
       for(int i=0;i<arrayVal;i++){
         ellipse(p2X[i],p2Y[i],20,20);
       }
-      //arr2++;
-      //ellipse(P2posX, P2posY, 20, 20);
+      //ellipse(p2X[19],p2Y[19],40,40);
+      
     } else if(P2playerC == "purple"){
       fill(138, 43, 226);
       for(int i=0;i<arrayVal;i++){
         ellipse(p2X[i],p2Y[i],20,20);
       }
-      //arr2++;
-      //ellipse(P2posX, P2posY, 20, 20);
+      //ellipse(p2X[19],p2Y[19],40,40);
     }
   }
   
   void keyPressed(){
       if (keyCode == UP){
         P2posY -= 20;
+        if(P2posY < 0){
+          P2posY=10;
+        }
         boo1=false;
         boo2=true;
       } else if (keyCode == DOWN){
         P2posY += 20;
+        if(P2posY>height){
+          P2posY=height-10;
+        }
         boo1=false;
         boo2=true;
       } else if (keyCode == RIGHT){
         P2posX += 20;
+        if(P2posX>width){
+          P2posX=width-10;
+        }
         boo1=false;
         boo2=true;
       } else if (keyCode == LEFT){
         P2posX -= 20;
+        if(P2posX<0){
+          P2posX=10;
+        }
         boo1=false;
         boo2=true;
       } else if (key == 'w'){
-        P1posY -= 30;
+        P1posY -= 20;
+        if(P1posY<0){
+          P1posY=10;
+        }
         boo1=true;
         boo2=false;
         print("W");
       } else if (key == 's'){
-        P1posY += 30;
+        P1posY += 20;
+        if(P1posY>height){
+          P1posY=height-10;
+        }
         boo1=true;
         boo2=false;
         print("S");
       } else if (key == 'a'){
-        P1posX -= 30;
+        P1posX -= 20;
+        if(P1posX<0){
+          P1posX=10;
+        }
         boo1=true;
         boo2=false;
         print("A");
       } else if (key == 'd'){
-        P1posX += 30;
+        P1posX += 20;
+        if(P1posX>width){
+          P1posX=width-10;
+        }
         boo1=true;
         boo2=false;
         print("D");
