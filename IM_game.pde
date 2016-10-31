@@ -120,7 +120,7 @@ class Player{ //makes the players in their position and color
    image(photo, positionX, positionY,30,40);
    ellipse(positionX,positionY,40,40);
   }
-  /*void keyPressed(){
+  void keyPressed(){
     if(keyPressed==true){
     //if (key == CODED) {
       if (keyCode == UP){
@@ -168,7 +168,7 @@ class Player{ //makes the players in their position and color
         P1posX += 0;
       }
     }
-  }*/
+  }
 }
 
 class Move{
@@ -221,8 +221,6 @@ class Move{
         P2posY -= 20;
         boo1=false;
         boo2=true;
-        
-        //keyPressed=false;
       } else if (keyCode == DOWN){
         P2posY += 20;
         boo1=false;
@@ -236,22 +234,22 @@ class Move{
         boo1=false;
         boo2=true;
       } else if (key == 'w'){
-        P1posY -= 20;
+        P1posY -= 30;
         boo1=true;
         boo2=false;
         print("W");
       } else if (key == 's'){
-        P1posY += 20;
+        P1posY += 30;
         boo1=true;
         boo2=false;
         print("S");
       } else if (key == 'a'){
-        P1posX -= 20;
+        P1posX -= 30;
         boo1=true;
         boo2=false;
         print("A");
       } else if (key == 'd'){
-        P1posX += 20;
+        P1posX += 30;
         boo1=true;
         boo2=false;
         print("D");
