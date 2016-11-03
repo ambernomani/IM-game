@@ -1,33 +1,34 @@
-int P1posY = 30;
-int P1posX = 30;
-int P2posX = 550;//width/2;
-int P2posY = 550; //height;
+int P1posY = 50;
+int P1posX = 50;
+int P2posX = 750;//width/2;
+int P2posY = 750; //height;
 String P1playerC = "purple";
 String P2playerC = "blue";
 
-int arrayVal=30;
+int arrayVal = 100;
 
-int arr1=0;//counter for how many stored values for player 1
-int arr2=0;//counter for how many stored values for player 2
-boolean boo1=false;//checks if player 1 or player 2 has moved
-boolean boo2=false;
+int arr1 = 0;//counter for how many stored values for player 1
+int arr2 = 0;//counter for how many stored values for player 2
+boolean boo1 = false;//checks if player 1 or player 2 has moved
+boolean boo2 = false;
 int[] p1X;
 int[] p1Y;
 int[] p2X;
 int[] p2Y;
 
-Player p1;
-Player p2;
+//Player p1;
+//Player p2;
 Move m1;
 Move m2;
 PImage photo;
 int setTextColor = 0;//determines if the key has been pressed
 
 void setup(){
-  size(600, 600);
+  size(800, 800);
   background(0);
-  p1 = new Player(P1playerC, P1posX, P1posY);
-  p2 = new Player(P2playerC, P2posX, P2posY);
+  noStroke();
+  //p1 = new Player(P1playerC, P1posX, P1posY);
+  //p2 = new Player(P2playerC, P2posX, P2posY);
   m1= new Move(P1playerC, P1posX, P1posY);
   m2=new Move(P2playerC, P2posX, P2posY);
   
@@ -86,10 +87,10 @@ void draw(){
       fill(255);
       text("GAME OVER. Blue wins", width/2, height/2);
       println("gameoverB");
-      P1posY = 30;
-      P1posX = 30;
-      P2posX = 550;//width/2;
-      P2posY = 550; //height;
+      P1posY = 50;
+      P1posX = 50;
+      P2posX = 750;//width/2;
+      P2posY = 750; //height;
       for(int l=0;l<arrayVal;l++){
         p1X[l]=P1posX;
         p1Y[l]=P1posY;
@@ -105,10 +106,10 @@ void draw(){
       fill(255);
       text("GAME OVER. Purple wins", width/2, height/2);
       println("gameoverP");
-      P1posY = 30;
-      P1posX = 30;
-      P2posX = 550;//width/2;
-      P2posY = 550; //height;
+      P1posY = 50;
+      P1posX = 50;
+      P2posX = 750;//width/2;
+      P2posY = 750; //height;
       for(int l=0;l<arrayVal;l++){
         p1X[l]=P1posX;
         p1Y[l]=P1posY;
@@ -125,7 +126,7 @@ void draw(){
   }   
 }
   
-class Player{ //makes the players in their position and color
+/*class Player{ //makes the players in their position and color
   String playerColor;
   int positionX;
   int positionY;
@@ -198,8 +199,7 @@ class Player{ //makes the players in their position and color
       }
     }
   }
-}
-
+}*/
 class Move{
   String playerColor;
   int positionX;
@@ -246,65 +246,73 @@ class Move{
   
   void keyPressed(){
       if (keyCode == UP){
-        P2posY -= 20;
+        P2posY -= 10;
         if(P2posY < 0){
           P2posY=10;
         }
         boo1=false;
         boo2=true;
+        //delay(200);
       } else if (keyCode == DOWN){
-        P2posY += 20;
+        P2posY += 10;
         if(P2posY>height){
           P2posY=height-10;
         }
         boo1=false;
         boo2=true;
+        //delay(200);
       } else if (keyCode == RIGHT){
-        P2posX += 20;
+        P2posX += 10;
         if(P2posX>width){
           P2posX=width-10;
         }
         boo1=false;
         boo2=true;
+        //delay(200);
       } else if (keyCode == LEFT){
-        P2posX -= 20;
+        P2posX -= 10;
         if(P2posX<0){
           P2posX=10;
         }
         boo1=false;
         boo2=true;
+        //delay(200);
       } else if (key == 'w'){
-        P1posY -= 20;
+        P1posY -= 10;
         if(P1posY<0){
           P1posY=10;
         }
         boo1=true;
         boo2=false;
         print("W");
+        //delay(200);
       } else if (key == 's'){
-        P1posY += 20;
+        P1posY += 10;
         if(P1posY>height){
           P1posY=height-10;
         }
         boo1=true;
         boo2=false;
         print("S");
+        //delay(200);
       } else if (key == 'a'){
-        P1posX -= 20;
+        P1posX -= 10;
         if(P1posX<0){
           P1posX=10;
         }
         boo1=true;
         boo2=false;
         print("A");
+        //delay(200);
       } else if (key == 'd'){
-        P1posX += 20;
+        P1posX += 10;
         if(P1posX>width){
           P1posX=width-10;
         }
         boo1=true;
         boo2=false;
         print("D");
+        //delay(200);
       }
       print(boo1, boo2);
       if(arr1<arrayVal && boo1==true){
