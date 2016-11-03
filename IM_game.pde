@@ -23,12 +23,12 @@ Move m2;
 PImage photo;
 int setTextColor = 0;//determines if the key has been pressed
 
+ArrayList<Star> starArray;
+
 void setup(){
   size(800, 800);
   background(0);
   noStroke();
-  //p1 = new Player(P1playerC, P1posX, P1posY);
-  //p2 = new Player(P2playerC, P2posX, P2posY);
   m1= new Move(P1playerC, P1posX, P1posY);
   m2=new Move(P2playerC, P2posX, P2posY);
   
@@ -47,6 +47,14 @@ void setup(){
   printArray(p1Y);
   printArray(p2X);
   printArray(p2Y);
+  
+  starArray= new ArrayList<Star>();
+  for(int i=0;i<4;i++){
+    for(int y=0; y<4; y++){
+      Star s= new Star((i*200)+100,(y*200)+100,10,20,5);
+      starArray.add(s);
+    }
+  }
 }
 
 void draw(){
@@ -57,28 +65,17 @@ void draw(){
        text("Press any key to start", width/2, height/2);
   }else{
       fill(0);
-      //text("Press any key to start", width/2, height/2);
   }
   
   if (keyPressed == true){
     setTextColor = 1;
-    //p1.keyPressed();
     m1.keyPressed();    
-    //p2.keyPressed();
     m2.keyPressed();
     delay(75);
     color pTrue = color(138, 43, 226);
-    //println("trueP: ", pTrue);
-    //println("TPRed:"+red(pTrue)+" Green:"+green(pTrue)+" Blue:"+blue(pTrue)); 
     color bTrue = color(0, 0, 255);
-    //println("trueB: ", bTrue);
-    //println("TPRed:"+red(bTrue)+" Green:"+green(bTrue)+" Blue:"+blue(bTrue)); 
     color p = get(P1posX, P1posY);
-    //println("colorP: ", p);
-    //println("PRed:"+red(p)+" Green:"+green(p)+" Blue:"+blue(p)); 
     color b = get(P2posX, P2posY);
-    //println("colorB: ", b);
-    //println("BRed:"+red(b)+" Green:"+green(b)+" Blue:"+blue(b)); 
     
     if (p == bTrue){
       m1.display();
@@ -96,8 +93,7 @@ void draw(){
         p1Y[l]=P1posY;
         p2X[l]=P2posX;
         p2Y[l]=P2posY;
-      }
-      //delay(2000);  
+      } 
 
     } else if (b == pTrue){
       m2.display();
@@ -116,90 +112,20 @@ void draw(){
         p2X[l]=P2posX;
         p2Y[l]=P2posY;
       }
-      //delay(2000);
     } else {
       
       m1.display();
       m2.display();
      
     } 
+     fill(200,200,0);
+    for(int i=0;i<starArray.size();i++){
+      Star s= starArray.get(i);
+      s.starDisplay();
+    }
   }   
 }
-  
-/*class Player{ //makes the players in their position and color
-  String playerColor;
-  int positionX;
-  int positionY;
-  
-  Player(String tempColor,int tempX, int tempY){
-    playerColor=tempColor;
-    positionX=tempX;
-    positionY=tempY;
-  }
-  void display(){
-   if(playerColor == "blue"){
-     //fill(0,0,255);
-     photo=loadImage("blueGirl.png");
-     //ellipse(positionX,positionY,40,40);
-   }
-   if(playerColor=="purple"){
-     //fill(138, 43, 226);
-     //ellipse(positionX,positionY,40,40);
-     photo=loadImage("purpleGirl.png");
-   }
-   image(photo, positionX, positionY,30,40);
-   ellipse(positionX,positionY,40,40);
-  }
-  void keyPressed(){
-    if(keyPressed==true){
-    //if (key == CODED) {
-      if (keyCode == UP){
-        P2posY -= 10;
-      } else if (keyCode == DOWN){
-        P2posY += 10;
-      } else if (keyCode == RIGHT){
-        P2posX += 10;
-      } else if (keyCode == LEFT){
-        P2posX -= 10;
-      } else if (key == 'w'){
-        P1posY += 10;
-        print('w');
-      } else if (key == 's'){
-        P1posY -= 10;
-        print('s');
-      } else if (key == 'a'){
-        P1posX += 10;
-        print('a');
-      } else if (key == 'd'){
-        P1posX -= 10;
-        print('d');
-      }
-    }
-  }
-  
-  void keyReleased(){
-    if(keyPressed==true){
-    //if (key == CODED) {
-      if (keyCode == UP){
-        P2posY -= 0;
-      } else if (keyCode == DOWN){
-        P2posY += 0;
-      } else if (keyCode == RIGHT){
-        P2posX += 0;
-      } else if (keyCode == LEFT){
-        P2posX -= 0;
-      } else if (key == 'w'){
-        P1posY -= 0;
-      } else if (key == 's'){
-        P1posY += 0;
-      } else if (key == 'a'){
-        P1posX -= 0;
-      } else if (key == 'd'){
-        P1posX += 0;
-      }
-    }
-  }
-}*/
+
 class Move{
   String playerColor;
   int positionX;
@@ -215,32 +141,56 @@ class Move{
     background(0);
     if (P1playerC == "blue") {
        fill(0,0,255);
+       ellipse(p1X[arrayVal-1],p1Y[arrayVal-1],40,40);
        for(int i=0;i<arrayVal;i++){
           ellipse(p1X[i],p1Y[i],20,20);
        }
-       //ellipse(p1X[19],p1Y[19],40,40);
+       fill(255);
+       ellipse((p1X[arrayVal-1]-10),p1Y[arrayVal-1],10,10);
+       ellipse((p1X[arrayVal-1]+10),p1Y[arrayVal-1],10,10);
+       fill(0);
+       ellipse((p1X[arrayVal-1]-10),p1Y[arrayVal-1],5,5);
+       ellipse((p1X[arrayVal-1]+10),p1Y[arrayVal-1],5,5);
        
     } else if (P1playerC == "purple") {
        fill(138, 43, 226);
+       ellipse(p1X[arrayVal-1],p1Y[arrayVal-1],40,40);
        for(int i=0;i<arrayVal;i++){
           ellipse(p1X[i],p1Y[i],20,20);
        }
-       //ellipse(p1X[19],p1Y[19],40,40);
+       fill(255);
+       ellipse((p1X[arrayVal-1]-10),p1Y[arrayVal-1],10,10);
+       ellipse((p1X[arrayVal-1]+10),p1Y[arrayVal-1],10,10);
+       fill(0);
+       ellipse((p1X[arrayVal-1]-10),p1Y[arrayVal-1],5,5);
+       ellipse((p1X[arrayVal-1]+10),p1Y[arrayVal-1],5,5);
        
     }
     if (P2playerC == "blue") {
       fill(0,0,255);
+      ellipse(p2X[arrayVal-1],p2Y[arrayVal-1],40,40);
       for(int i=0;i<arrayVal;i++){
         ellipse(p2X[i],p2Y[i],20,20);
       }
-      //ellipse(p2X[19],p2Y[19],40,40);
+      fill(255);
+      ellipse((p2X[arrayVal-1]-10),p2Y[arrayVal-1],10,10);
+      ellipse((p2X[arrayVal-1]+10),p2Y[arrayVal-1],10,10);
+      fill(0);
+      ellipse((p2X[arrayVal-1]-10),p2Y[arrayVal-1],5,5);
+      ellipse((p2X[arrayVal-1]+10),p2Y[arrayVal-1],5,5);
       
     } else if(P2playerC == "purple"){
       fill(138, 43, 226);
+      ellipse(p2X[arrayVal-1],p2Y[arrayVal-1],40,40);
       for(int i=0;i<arrayVal;i++){
         ellipse(p2X[i],p2Y[i],20,20);
       }
-      //ellipse(p2X[19],p2Y[19],40,40);
+      fill(255);
+      ellipse((p2X[arrayVal-1]-10),p2Y[arrayVal-1],10,10);
+      ellipse((p2X[arrayVal-1]+10),p2Y[arrayVal-1],10,10);
+      fill(0);
+      ellipse((p2X[arrayVal-1]-10),p2Y[arrayVal-1],5,5);
+      ellipse((p2X[arrayVal-1]+10),p2Y[arrayVal-1],5,5);
     }
   }
   
@@ -314,7 +264,9 @@ class Move{
         print("D");
         //delay(200);
       }
+      
       print(boo1, boo2);
+      
       if(arr1<arrayVal && boo1==true){
       p1X[arr1]=P1posX;
       p1Y[arr1]=P1posY;
@@ -343,26 +295,31 @@ class Move{
     }
   }
   
-/*  void keyReleased(){
-    if(keyPressed==true){
-    //if (key == CODED) {
-      if (key == UP){
-        P2posY -= 10;
-        keyPressed=false;
-      } else if (keyCode == DOWN){
-        P2posY += 10;
-      } else if (keyCode == RIGHT){
-        P2posX += 10;
-      } else if (keyCode == LEFT){
-        P2posX -= 10;
-      } else if (keyCode == 87){
-        P1posY -= 10;
-      } else if (keyCode == 83){
-        P1posY += 10;
-      } else if (keyCode == 68){
-        P1posX -= 10;
-      } else if (keyCode == 65){
-        P1posX += 10;
-      }
+class Star{
+  PVector loc;
+  int npoints;
+  float radius1;
+  float radius2;
+  
+  Star(int x, int y, float tempRad1, float tempRad2, int tempPoints){
+    loc=new PVector(x,y);
+    npoints=tempPoints;
+    radius1=tempRad1;
+    radius2=tempRad2;
+  }
+  
+  void starDisplay() {
+    float angle = TWO_PI / npoints;
+    float halfAngle = angle/2.0;
+    beginShape();
+    for (float a = 0; a < TWO_PI; a += angle) {
+      float sx = loc.x + cos(a) * radius2;
+      float sy = loc.y + sin(a) * radius2;
+      vertex(sx, sy);
+      sx = loc.x + cos(a+halfAngle) * radius1;
+      sy = loc.y + sin(a+halfAngle) * radius1;
+      vertex(sx, sy);
     }
-  }*/
+    endShape(CLOSE);
+  }
+}
