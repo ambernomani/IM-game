@@ -4,6 +4,7 @@ int P2posX = 760;//width/2;
 int P2posY = 760; //height;
 String P1playerC = "purple";
 String P2playerC = "blue";
+//String starC="yellow";
 
 int arrayVal = 100;
 
@@ -11,13 +12,12 @@ int arr1 = 0;//counter for how many stored values for player 1
 int arr2 = 0;//counter for how many stored values for player 2
 boolean boo1 = false;//checks if player 1 or player 2 has moved
 boolean boo2 = false;
+
 int[] p1X;
 int[] p1Y;
 int[] p2X;
 int[] p2Y;
 
-//Player p1;
-//Player p2;
 Move m1;
 Move m2;
 PImage photo;
@@ -64,11 +64,11 @@ void setup(){
       int x = (i*200)+100;
       int y2 = (y*200)+100;
       println(x, y2);
-      Star s= new Star(x, y2, 10,20,5);
+      Star s= new Star(x, y2, 10,20,5,"yellow");
       starArray.add(s);
       //printArray(starArray);
       coordStarsX[i] = x;
-      coordStarsY[y] = y2;
+      coordStarsY[i] = y2;
     }
   }
   printArray(starArray);
@@ -137,25 +137,45 @@ void draw(){
       m2.display();
      
     } 
-    fill(200,200,0);
     for(int i=0;i < starArray.size();i++){
       Star s= starArray.get(i);
+      if(s.starColor=="yellow"){
+         fill(200,200,0);
+      }else if(s.starColor=="purple"){
+        fill(138,43,226);
+      }else{
+        fill(0,0,255);
+      }
       s.starDisplay();
     }
-    for(int i=0;i<numStars;i++){
-      for(int y=0; y < numStars; y++){
-        if (coordStarsX[i] == P1posX && coordStarsY[y] == P1posY){
-          pointCounterP1++;
-          println("P1 points: ", pointCounterP1);
-        } else if(coordStarsX[i] == P2posX && coordStarsY[y] == P2posY){
-          pointCounterP2++;
-          println("P2 points: ", pointCounterP2);
-        } else {
-          println("P1 points: ", pointCounterP1);
-          println("P2 points: ", pointCounterP2);
+    
+    for(int i=0;i<starArray.size();i++){//check to see where if the snake passes the stars
+      Star s=starArray.get(i);
+        if((s.xPos-5<P1posX && P1posX<s.xPos+5) && (s.yPos-5<P1posY && P1posY<s.yPos+5)){
+            pointCounterP1++;
+            if(P1playerC=="blue"){   
+              s.starColor="blue";
+              s.starDisplay();
+            }else if(P1playerC=="purple"){
+              s.starColor="purple";
+              s.starDisplay();
+            }
+            println("P1 points: ", pointCounterP1);
+        } else if((s.xPos-5<P2posX && P2posX<s.xPos+5) && (s.yPos-5<P2posY && P2posY<s.yPos+5)){
+            pointCounterP2++;
+            if(P2playerC=="blue"){
+              s.starColor="blue";
+              s.starDisplay();
+            }else if(P2playerC=="purple"){
+              s.starColor="purple";
+              s.starDisplay();
+            }
+            println("P2 points: ", pointCounterP2);
+            }else {
+              println("P1 points: ", pointCounterP1);
+              println("P2 points: ", pointCounterP2);
+            }
         }
-      }
-    }
   }   
 }
 
@@ -350,15 +370,21 @@ class Move{
   
 class Star{
   PVector loc;
+  int xPos;
+  int yPos;
   int npoints;
   float radius1;
   float radius2;
+  String starColor;
   
-  Star(int x, int y, float tempRad1, float tempRad2, int tempPoints){
+  Star(int x, int y, float tempRad1, float tempRad2, int tempPoints, String tempColor){
     loc=new PVector(x,y);
+    xPos=x;
+    yPos=y;
     npoints=tempPoints;
     radius1=tempRad1;
     radius2=tempRad2;
+    starColor=tempColor;
   }
   
   void starDisplay() {
@@ -376,4 +402,3 @@ class Star{
     endShape(CLOSE);
   }
 }
-    
