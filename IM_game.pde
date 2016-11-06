@@ -1,7 +1,7 @@
-int P1posY = 50;
-int P1posX = 50;
-int P2posX = 750;//width/2;
-int P2posY = 750; //height;
+int P1posY = 40;
+int P1posX = 40;
+int P2posX = 760;//width/2;
+int P2posY = 760; //height;
 String P1playerC = "purple";
 String P2playerC = "blue";
 
@@ -22,8 +22,15 @@ Move m1;
 Move m2;
 PImage photo;
 int setTextColor = 0;//determines if the key has been pressed
+boolean isLeft, isRight, isUp, isDown, isW, isS, isA, isD;
 
 ArrayList<Star> starArray;
+int[] coordStarsX;
+int[] coordStarsY;
+int numStars = 4;
+
+int pointCounterP1 = 0;
+int pointCounterP2 = 0;
 
 void setup(){
   size(800, 800);
@@ -48,13 +55,23 @@ void setup(){
   printArray(p2X);
   printArray(p2Y);
   
+  coordStarsX = new int[numStars];
+  coordStarsY = new int[numStars];
+  
   starArray= new ArrayList<Star>();
-  for(int i=0;i<4;i++){
-    for(int y=0; y<4; y++){
-      Star s= new Star((i*200)+100,(y*200)+100,10,20,5);
+  for(int i=0;i<numStars;i++){
+    for(int y=0; y<numStars; y++){
+      int x = (i*200)+100;
+      int y2 = (y*200)+100;
+      println(x, y2);
+      Star s= new Star(x, y2, 10,20,5);
       starArray.add(s);
+      //printArray(starArray);
+      coordStarsX[i] = x;
+      coordStarsY[y] = y2;
     }
   }
+  printArray(starArray);
 }
 
 void draw(){
@@ -69,7 +86,9 @@ void draw(){
   
   if (keyPressed == true){
     setTextColor = 1;
-    m1.keyPressed();    
+    //m1.keyPressed();    
+    //m2.keyPressed();
+    m1.keyPressed();
     m2.keyPressed();
     delay(75);
     color pTrue = color(138, 43, 226);
@@ -86,7 +105,7 @@ void draw(){
       println("gameoverB");
       P1posY = 50;
       P1posX = 50;
-      P2posX = 750;//width/2;
+      P2posX = 750; //width/2;
       P2posY = 750; //height;
       for(int l=0;l<arrayVal;l++){
         p1X[l]=P1posX;
@@ -118,10 +137,24 @@ void draw(){
       m2.display();
      
     } 
-     fill(200,200,0);
-    for(int i=0;i<starArray.size();i++){
+    fill(200,200,0);
+    for(int i=0;i < starArray.size();i++){
       Star s= starArray.get(i);
       s.starDisplay();
+    }
+    for(int i=0;i<numStars;i++){
+      for(int y=0; y < numStars; y++){
+        if (coordStarsX[i] == P1posX && coordStarsY[y] == P1posY){
+          pointCounterP1++;
+          println("P1 points: ", pointCounterP1);
+        } else if(coordStarsX[i] == P2posX && coordStarsY[y] == P2posY){
+          pointCounterP2++;
+          println("P2 points: ", pointCounterP2);
+        } else {
+          println("P1 points: ", pointCounterP1);
+          println("P2 points: ", pointCounterP2);
+        }
+      }
     }
   }   
 }
@@ -195,76 +228,95 @@ class Move{
   }
   
   void keyPressed(){
-      if (keyCode == UP){
-        P2posY -= 10;
-        if(P2posY < 0){
-          P2posY=10;
-        }
-        boo1=false;
-        boo2=true;
-        //delay(200);
-      } else if (keyCode == DOWN){
-        P2posY += 10;
-        if(P2posY>height){
-          P2posY=height-10;
-        }
-        boo1=false;
-        boo2=true;
-        //delay(200);
-      } else if (keyCode == RIGHT){
-        P2posX += 10;
-        if(P2posX>width){
-          P2posX=width-10;
-        }
-        boo1=false;
-        boo2=true;
-        //delay(200);
-      } else if (keyCode == LEFT){
-        P2posX -= 10;
-        if(P2posX<0){
-          P2posX=10;
-        }
-        boo1=false;
-        boo2=true;
-        //delay(200);
-      } else if (key == 'w'){
-        P1posY -= 10;
-        if(P1posY<0){
-          P1posY=10;
-        }
-        boo1=true;
-        boo2=false;
-        print("W");
-        //delay(200);
-      } else if (key == 's'){
-        P1posY += 10;
-        if(P1posY>height){
-          P1posY=height-10;
-        }
-        boo1=true;
-        boo2=false;
-        print("S");
-        //delay(200);
-      } else if (key == 'a'){
-        P1posX -= 10;
-        if(P1posX<0){
-          P1posX=10;
-        }
-        boo1=true;
-        boo2=false;
-        print("A");
-        //delay(200);
-      } else if (key == 'd'){
-        P1posX += 10;
-        if(P1posX>width){
-          P1posX=width-10;
-        }
-        boo1=true;
-        boo2=false;
-        print("D");
-        //delay(200);
+    if (key == CODED){
+      switch (keyCode){
+        case UP:
+          P2posY -= 10;
+          if(P2posY < 0){
+            P2posY=10;
+          }
+          boo1=false;
+          boo2=true;
+           println("up");
+           break;
+          
+        case DOWN:
+          println("down");
+          P2posY += 10;
+          if(P2posY>height){
+            P2posY=height-10;
+          }
+          boo1=false;
+          boo2=true;
+          break;
+        
+        case RIGHT:
+          println("right");
+          P2posX += 10;
+          if(P2posX>width){
+            P2posX=width-10;
+          }
+          boo1=false;
+          boo2=true;
+          break;
+          
+        case LEFT:
+          println("left");
+          P2posX -= 10;
+          if(P2posX<0){
+            P2posX=10;
+          }
+          boo1=false;
+          boo2=true;
+          break;
+          
       }
-      
+    }
+      else{
+        switch(key){
+          case 'w':
+            println("w");
+            P1posY -= 10;
+            if(P1posY<0){
+              P1posY=10;
+            }
+            boo1=true;
+            boo2=false;
+           break;
+          
+          case 's':
+            println("s");
+            P1posY += 10;
+            if(P1posY>height){
+              P1posY=height-10;
+            }
+            boo1=true;
+            boo2=false;
+           break;
+
+          case 'd':
+            println("d");
+            P1posX += 10;
+            if(P1posX>width){
+              P1posX=width-10;
+            }
+            boo1=true;
+            boo2=false;
+           break;
+            
+          case 'a':
+            println("a");
+            P1posX -= 10;
+            if(P1posX<0){
+              P1posX=10;
+            }
+            boo1=true;
+            boo2=false;
+           break;
+        
+        }
+      }
+         
       print(boo1, boo2);
       
       if(arr1<arrayVal && boo1==true){
@@ -293,6 +345,7 @@ class Move{
       arr1++;
       arr2++;
     }
+  
   }
   
 class Star{
@@ -323,3 +376,4 @@ class Star{
     endShape(CLOSE);
   }
 }
+    
