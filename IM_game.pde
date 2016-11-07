@@ -1,7 +1,7 @@
 int P1posY = 40;
 int P1posX = 40;
-int P2posX = 760;//width/2;
-int P2posY = 760; //height;
+int P2posX = 560;//width/2;
+int P2posY = 560; //height;
 String P1playerC = "purple";
 String P2playerC = "blue";
 //String starC="yellow";
@@ -79,7 +79,12 @@ void draw() {
     fill(255);
     textSize(32);
     textAlign(CENTER);
-    text("Press any key to start", width/2, height/2);
+    text("Press any key to start", width/2, height/2 + 250);
+    translate(width - 100, height/2); //for 800
+    //translate(width/2 + 300, height/2 + 100); //for 1200
+    rotate(PI);
+    textAlign(CENTER);
+    text("Press any key to start", 300, 300 - 50);
   } else {
     fill(0);
   }
@@ -103,10 +108,10 @@ void draw() {
       fill(255);
       text("GAME OVER. Blue wins", width/2, height/2);
       println("gameoverB");
-      P1posY = 50;
-      P1posX = 50;
-      P2posX = 750; //width/2;
-      P2posY = 750; //height;
+      P1posY = 40;
+      P1posX = 40;
+      P2posX = 560; //width/2;
+      P2posY = 560; //height;
       for (int l=0; l<arrayVal; l++) {
         p1X[l]=P1posX;
         p1Y[l]=P1posY;
@@ -120,10 +125,10 @@ void draw() {
       fill(255);
       text("GAME OVER. Purple wins", width/2, height/2);
       println("gameoverP");
-      P1posY = 50;
-      P1posX = 50;
-      P2posX = 750;//width/2;
-      P2posY = 750; //height;
+      P1posY = 40;
+      P1posX = 40;
+      P2posX = 560;//width/2;
+      P2posY = 560; //height;
       for (int l=0; l<arrayVal; l++) {
         p1X[l]=P1posX;
         p1Y[l]=P1posY;
@@ -265,91 +270,92 @@ class Move {
   }
 
   void keyPressed() {
-    if (key == CODED) {
-      switch (keyCode) {
-      case UP:
-        P2posY -= 10;
-        if (P2posY < 0) {
-          P2posY=10;
+   
+      switch(keyCode) {
+        case UP:
+          P2posY -= 10;
+          if (P2posY < 0) {
+            P2posY=10;
+          }
+          boo1=false;
+          boo2=true;
+          println("up");
+          break;
+  
+        case DOWN:
+          println("down");
+          P2posY += 10;
+          if (P2posY>height) {
+            P2posY=height-10;
+          }
+          boo1=false;
+          boo2=true;
+          break;
+  
+        case RIGHT:
+          println("right");
+          P2posX += 10;
+          if (P2posX>width) {
+            P2posX=width-10;
+          }
+          boo1=false;
+          boo2=true;
+          break;
+  
+        case LEFT:
+          println("left");
+          P2posX -= 10;
+          if (P2posX<0) {
+            P2posX=10;
+          }
+          boo1=false;
+          boo2=true;
+          break;
         }
-        boo1=false;
-        boo2=true;
-        println("up");
-        break;
-
-      case DOWN:
-        println("down");
-        P2posY += 10;
-        if (P2posY>height) {
-          P2posY=height-10;
-        }
-        boo1=false;
-        boo2=true;
-        break;
-
-      case RIGHT:
-        println("right");
-        P2posX += 10;
-        if (P2posX>width) {
-          P2posX=width-10;
-        }
-        boo1=false;
-        boo2=true;
-        break;
-
-      case LEFT:
-        println("left");
-        P2posX -= 10;
-        if (P2posX<0) {
-          P2posX=10;
-        }
-        boo1=false;
-        boo2=true;
-        break;
-      }
-    } else {
+  
       switch(key) {
-      case 'w':
-        println("w");
-        P1posY -= 10;
-        if (P1posY<0) {
-          P1posY=10;
+        case 'w':
+          println("w");
+          P1posY += 10;
+          if (P1posY>height) {
+            P1posY=height-10;
+          }
+          
+          boo1=true;
+          boo2=false;
+          break;
+  
+        case 's':
+          println("s");
+          P1posY -= 10;
+          if (P1posY<0) {
+            P1posY=10;
+          }
+          boo1=true;
+          boo2=false;
+          break;
+  
+        case 'd':
+          println("d");
+          P1posX -= 10;
+          if (P1posX<0) {
+            P1posX=10;
+          }
+          boo1=true;
+          boo2=false;
+          break;
+  
+        case 'a':
+          println("a");
+          P1posX += 10;
+          if (P1posX>width) {
+            P1posX=width-10;
+          }
+          
+          boo1=true;
+          boo2=false;
+          break;
         }
-        boo1=true;
-        boo2=false;
-        break;
-
-      case 's':
-        println("s");
-        P1posY += 10;
-        if (P1posY>height) {
-          P1posY=height-10;
-        }
-        boo1=true;
-        boo2=false;
-        break;
-
-      case 'd':
-        println("d");
-        P1posX += 10;
-        if (P1posX>width) {
-          P1posX=width-10;
-        }
-        boo1=true;
-        boo2=false;
-        break;
-
-      case 'a':
-        println("a");
-        P1posX -= 10;
-        if (P1posX<0) {
-          P1posX=10;
-        }
-        boo1=true;
-        boo2=false;
-        break;
-      }
-    }
 
     print(boo1, boo2);
 
