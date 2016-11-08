@@ -1,4 +1,3 @@
-
 void checkWinner(){
   color pTrue = color(138, 43, 226);
   color bTrue = color(0, 0, 255);
@@ -13,15 +12,16 @@ void checkWinner(){
       println("gameoverB");
       P1posY = 40;
       P1posX = 40;
-      P2posX = 560; //width/2;
-      P2posY = 560; //height;
+      P2posX = 760; //width/2;
+      P2posY = 760; //height;
       for (int l=0; l<arrayVal; l++) {
         p1X[l]=P1posX;
         p1Y[l]=P1posY;
         p2X[l]=P2posX;
         p2Y[l]=P2posY;
       }
-    } else if (b == pTrue) {
+    }
+    if (b == pTrue) {
       m2.display();
       fill(0);
       rect(0, 0, width, height);
@@ -30,15 +30,15 @@ void checkWinner(){
       println("gameoverP");
       P1posY = 40;
       P1posX = 40;
-      P2posX = 560;//width/2;
-      P2posY = 560; //height;
+      P2posX = 760;//width/2;
+      P2posY = 760; //height;
       for (int l=0; l<arrayVal; l++) {
         p1X[l]=P1posX;
         p1Y[l]=P1posY;
         p2X[l]=P2posX;
         p2Y[l]=P2posY;
       }
-    } else {
+    } if (p == color(0) || b == color(0)) {
 
       m1.display();
       m2.display();
@@ -86,7 +86,7 @@ void checkWinner(){
         println("P2 points: ", pointCounterP2);
       }
     }
-    if ((pointCounterP1+pointCounterP2)>15) {
+    if ((pointCounterP1+pointCounterP2)>35) {
       if (pointCounterP1>pointCounterP2) {
         fill(0);
         rect(0, 0, width, height);
