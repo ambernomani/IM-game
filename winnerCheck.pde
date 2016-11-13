@@ -86,7 +86,7 @@ void checkWinner(){
         println("P2 points: ", pointCounterP2);
       }
     }
-    if ((pointCounterP1+pointCounterP2)>35) {
+    if ((pointCounterP1+pointCounterP2)>15) {
       if (pointCounterP1>pointCounterP2) {
         fill(0);
         rect(0, 0, width, height);
